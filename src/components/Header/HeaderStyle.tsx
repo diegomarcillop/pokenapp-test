@@ -1,0 +1,17 @@
+import {StyleSheet} from 'react-native';
+import {fonts} from '../../style/Index';
+
+export const style = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  title: {
+    fontFamily: fonts.poppinsBold,
+    fontSize: 22,
+  },
+  icon: {
+    width: 25,
+    height: 25,
+  },
+});
