@@ -1,3 +1,4 @@
+import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {FlatList, View} from 'react-native';
 
@@ -9,6 +10,8 @@ interface Props {
 }
 
 export const PokemonList = ({items}: Props) => {
+  const navigation = useNavigation();
+
   return (
     <FlatList
       style={style.scrollView}
@@ -18,7 +21,12 @@ export const PokemonList = ({items}: Props) => {
       data={items}
       renderItem={({item}) => (
         <View style={style.card}>
-          <PokemonCard url={item.url} />
+          <PokemonCard
+            url={item.url}
+            onPress={(data: any) =>
+              navigation.navigate('Detail' as never, data as never)
+            }
+          />
         </View>
       )}
       keyExtractor={item => item.name}

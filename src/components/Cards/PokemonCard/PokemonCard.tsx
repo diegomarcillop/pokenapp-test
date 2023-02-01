@@ -5,13 +5,16 @@ import {SvgUri} from 'react-native-svg';
 
 import api from '../../../common/api/api';
 import {getColorType} from '../../../common/utils/get-type-color';
+import {TypesList} from '../../List/TypesList/TypesList';
 import {style} from './PokemonCardStyle';
 
 interface Props {
   url?: string;
+  onPress: any;
 }
 
 interface Character {
+  id: number;
   image: string;
   name: string;
   types: Array<{
@@ -19,9 +22,10 @@ interface Character {
   }>;
   typePrimary: any;
   background: string;
+  details: any;
 }
 
-export const PokemonCard = ({url}: Props) => {
+export const PokemonCard = ({url, onPress}: Props) => {
   const [characterInformation, setCharacterInformation] = useState<Character>();
 
   useEffect(() => {
@@ -33,19 +37,25 @@ export const PokemonCard = ({url}: Props) => {
     const data: any = response.payload;
 
     setCharacterInformation({
+      id: data.id,
       name: data.name,
       types: Object.values(data.types),
       image: data?.sprites?.other?.dream_world?.front_default,
       typePrimary: characterInformation?.types[0].type.name,
       background: getColorType(characterInformation?.types[0].type.name),
+      details: data,
     });
   };
+
+  const getStyle = () => ({
+    backgroundColor: characterInformation?.background,
+    ...style.container,
+  });
+
   return (
     <TouchableOpacity
-      style={{
-        backgroundColor: characterInformation?.background,
-        ...style.container,
-      }}>
+      onPress={() => onPress(characterInformation)}
+      style={getStyle()}>
       {characterInformation?.image && (
         <SvgUri
           width={100}
@@ -56,13 +66,7 @@ export const PokemonCard = ({url}: Props) => {
       )}
       <View style={style.content}>
         <Text style={style.title}>{characterInformation?.name}</Text>
-        <View style={style.types}>
-          {characterInformation?.types.map((type: any, index) => (
-            <View key={index} style={style.containerType}>
-              <Text style={style.textType}>{type.type.name}</Text>
-            </View>
-          ))}
-        </View>
+        <TypesList types={characterInformation?.types || []} />
       </View>
     </TouchableOpacity>
   );
