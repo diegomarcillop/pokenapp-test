@@ -17,11 +17,9 @@ interface Character {
   id: number;
   image: string;
   name: string;
-  types: Array<{
-    type: any;
-  }>;
+  types: any;
   typePrimary: any;
-  background: string;
+  background?: string;
   details: any;
   url?: string;
 }
@@ -36,22 +34,23 @@ export const PokemonCard = ({url, onPress}: Props) => {
   const getPokemonForId = async () => {
     const response = await api.get('', undefined, url);
     const data: any = response.payload;
+    const types: any = Object.values(data.types);
 
     setCharacterInformation({
       id: data.id,
       name: data.name,
-      types: Object.values(data.types),
+      types,
       image: data?.sprites?.other?.dream_world?.front_default,
-      typePrimary: characterInformation?.types[0].type.name,
-      background: getColorType(characterInformation?.types[0].type.name),
+      typePrimary: types[0].type.name,
       details: data,
+      background: getColorType(types[0].type.name),
       url,
     });
   };
 
   const getStyle = () => ({
-    backgroundColor: characterInformation?.background,
     ...style.container,
+    backgroundColor: characterInformation?.background,
   });
 
   return (
