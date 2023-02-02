@@ -24,7 +24,7 @@ export const Tabs = ({items, onSelected, initialTab}: Props) => {
     <View style={style.container}>
       {items.map((item, index) => (
         <TouchableOpacity
-          key={index}
+          key={item.name}
           style={{
             ...style.item,
             width: `${100 / items.length}%`,

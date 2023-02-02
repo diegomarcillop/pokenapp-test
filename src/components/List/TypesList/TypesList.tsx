@@ -9,8 +9,8 @@ interface Props {
 export const TypesList = ({types}: Props) => {
   return (
     <View style={style.types}>
-      {types.map((type: any, index: any) => (
-        <View key={index} style={style.containerType}>
+      {types.map((type: any) => (
+        <View key={type.type.name} style={style.containerType}>
           <Text style={style.textType}>{type.type.name}</Text>
         </View>
       ))}

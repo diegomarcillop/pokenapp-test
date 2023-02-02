@@ -78,7 +78,7 @@ export const CharacteristicsPokemon = () => {
       {tabSelected === 1 && (
         <View style={style.content}>
           {detail?.details.stats.map((item: any) => (
-            <View style={style.item__row}>
+            <View style={style.item__row} key={item.stat.name}>
               <Text style={style.value__capitalize}>
                 {item.stat.name} ({item.base_stat})
               </Text>
