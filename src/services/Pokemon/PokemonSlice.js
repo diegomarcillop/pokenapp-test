@@ -5,12 +5,15 @@ const initialState = {
   loading: {
     getAll: false,
   },
+  detail: {},
+  all: undefined,
 };
 
 const pokemonSlice = createSlice({
   name: 'pokemon',
   initialState: initialState,
   reducers: {
+    getAll: state => ({...state}),
     setState(state, {payload: {key, newState}}) {
       state[key] = newState;
     },

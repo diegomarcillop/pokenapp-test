@@ -1,9 +1,11 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 import {SvgUri} from 'react-native-svg';
+import {useSelector} from 'react-redux';
 import {Header} from '../../components/Header/Header';
 
 import {TypesList} from '../../components/List/TypesList/TypesList';
+import {CharacteristicsPokemon} from '../../components/CharacteristicsPokemon/CharacteristicsPokemon';
 import {style} from './PokemonDetailStyle';
 
 interface Props {
@@ -11,13 +13,13 @@ interface Props {
   navigation: any;
 }
 
-export const PokemonDetail = ({route, navigation}: Props) => {
-  const params = route.params;
+export const PokemonDetail = ({navigation}: Props) => {
+  const {detail} = useSelector((state: any) => state.pokemon);
 
   const handleFavoritePokemon = () => {};
 
   return (
-    <View style={{...style.container, backgroundColor: params.background}}>
+    <View style={{...style.container, backgroundColor: detail.background}}>
       <Header
         iconLeft="arrow-left"
         onPressLeft={() => navigation.goBack()}
@@ -25,16 +27,17 @@ export const PokemonDetail = ({route, navigation}: Props) => {
         onPressRight={handleFavoritePokemon}
       />
       <View style={style.information}>
-        <Text style={style.title}>{params.name}</Text>
-        <TypesList types={params?.types || []} />
+        <Text style={style.title}>{detail.name}</Text>
+        <TypesList types={detail?.types || []} />
       </View>
       <View style={style.content}>
         <SvgUri
           width={250}
           height={250}
-          uri={params?.image}
+          uri={detail?.image}
           style={style.image}
         />
+        <CharacteristicsPokemon />
       </View>
     </View>
   );

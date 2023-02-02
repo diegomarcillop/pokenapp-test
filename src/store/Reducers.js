@@ -6,7 +6,7 @@ const appReducers = combineReducers({
   pokemon: PokemonReducer,
 });
 
-const rootReducers = (state: any, action: any) => {
+const rootReducers = (state, action) => {
   if (action.type === 'auth/logout') {
     state = undefined;
   }

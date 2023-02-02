@@ -28,7 +28,7 @@ export const style = StyleSheet.create({
   image: {
     alignSelf: 'center',
     position: 'absolute',
-    transform: [{translateY: -200}],
+    transform: [{translateY: -180}],
   },
   content: {
     flex: 2,
@@ -39,5 +39,9 @@ export const style = StyleSheet.create({
   information: {
     flex: 1,
     padding: 10,
+  },
+  tabs: {
+    paddingTop: 80,
+    paddingHorizontal: 10,
   },
 });

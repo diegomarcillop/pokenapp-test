@@ -8,7 +8,7 @@ import {PokemonList} from '../../components/List/PokemonList/PokemonList';
 import {style} from './HomeStyle';
 
 export const Home = () => {
-  const {all} = useSelector(state => state.pokemon);
+  const {all} = useSelector((state: any) => state.pokemon);
 
   return (
     <View style={style.container}>
