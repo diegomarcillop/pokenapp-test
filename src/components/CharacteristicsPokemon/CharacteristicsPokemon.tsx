@@ -26,14 +26,6 @@ export const CharacteristicsPokemon = () => {
 
   const [tabSelected, setTabSelected] = useState<number>(0);
 
-  const getTotalStats = (stats: any) => {
-    let total = 0;
-    stats?.forEach((e: any) => {
-      total = total + e.base_stat;
-    });
-    return total;
-  };
-
   return (
     <View style={style.tabs}>
       <Tabs
@@ -96,7 +88,7 @@ export const CharacteristicsPokemon = () => {
           <View style={{...style.item, justifyContent: 'space-between'}}>
             <Text style={style.label}>Total</Text>
             <Text style={style.value__capitalize__large}>
-              {getTotalStats(detail?.details.stats)}
+              {detail?.totalStats}
             </Text>
           </View>
         </View>

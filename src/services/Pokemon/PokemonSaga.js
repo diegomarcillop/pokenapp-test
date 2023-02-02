@@ -1,8 +1,8 @@
-import {ToastAndroid} from 'react-native';
 import {all, put, takeLatest} from 'redux-saga/effects';
 
 import api from '../../common/api/api';
 import * as favoritesStorage from '../../common/storage/favorites';
+import {modalActions} from '../Modal/ModalSlice';
 import {PokemonActions} from './PokemonSlice';
 
 function* getAll({payload}) {
@@ -43,7 +43,16 @@ function* addFavourite({payload}) {
   yield put(PokemonActions.getAllFavorites());
   yield put(PokemonActions.setLoading({key: 'addFavourite', newState: false}));
 
-  ToastAndroid.show('Has been added to favorites', ToastAndroid.CENTER);
+  yield put(
+    modalActions.setModal({
+      keyModal: 'alertMessage',
+      visible: true,
+      params: {
+        title: 'Has been added to favorite!',
+        typeModal: 'success',
+      },
+    }),
+  );
 }
 
 function* removeFavourite({payload}) {
@@ -56,7 +65,16 @@ function* removeFavourite({payload}) {
     PokemonActions.setLoading({key: 'removeFavourite', newState: false}),
   );
 
-  ToastAndroid.show('Your pokemon has been eliminated', ToastAndroid.CENTER);
+  yield put(
+    modalActions.setModal({
+      keyModal: 'alertMessage',
+      visible: true,
+      params: {
+        title: 'Your pokemon has been eliminated',
+        type: 'danger',
+      },
+    }),
+  );
 }
 
 function* ActionWatcher() {

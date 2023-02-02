@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import {useEffect, useState} from 'react';
 import api from '../common/api/api';
+import {getTotalStats} from '../common/utils/get-total-starts';
 import {getColorType} from '../common/utils/get-type-color';
 
 interface Character {
@@ -13,6 +14,7 @@ interface Character {
   details: any;
   url?: string;
   species: any;
+  totalStats: number;
 }
 
 const useFetchPokemon = (url: any) => {
@@ -38,6 +40,7 @@ const useFetchPokemon = (url: any) => {
       typePrimary: types[0].type.name,
       details: values,
       background: getColorType(types[0].type.name),
+      totalStats: getTotalStats(values?.stats),
       species,
       url,
     });

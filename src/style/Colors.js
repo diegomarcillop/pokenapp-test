@@ -7,4 +7,5 @@ export const colors = {
   blue50: '#608BF8',
   red: '#FF415E',
   success: '#5ED871',
+  blue600: '#3520FF',
 };

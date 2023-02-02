@@ -2,6 +2,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import React, {useEffect} from 'react';
 import {useDispatch} from 'react-redux';
+import { AlertMessage } from '../components/Modals/AlertMessage/AlertMessage';
 
 import {PokemonActions} from '../services/Pokemon/PokemonSlice';
 import {Favorites} from './Favorites/Favorites';
@@ -42,6 +43,7 @@ export const Main = () => {
           options={{headerShown: false}}
         />
       </Stack.Navigator>
+      <AlertMessage />
     </NavigationContainer>
   );
 };
