@@ -4,7 +4,7 @@ import {Text, View} from 'react-native';
 import {SvgUri} from 'react-native-svg';
 import {useDispatch, useSelector} from 'react-redux';
 
-import * as favoritesStorage from '../../common/storage/favorites';
+import * as favoritesStorage from '../../common/storage/team';
 import {CharacteristicsPokemon} from '../../components/CharacteristicsPokemon/CharacteristicsPokemon';
 import {Header} from '../../components/Header/Header';
 import {TypesList} from '../../components/List/TypesList/TypesList';
@@ -43,7 +43,7 @@ export const PokemonDetail = ({navigation}: Props) => {
       dispatch(PokemonActions.removeFavourite(values));
       navigation.goBack();
     } else {
-      dispatch(PokemonActions.addFavourite(values));
+      dispatch(PokemonActions.addPokemon({values, detail}));
     }
     setIsFavourite(!isFavourite);
   };

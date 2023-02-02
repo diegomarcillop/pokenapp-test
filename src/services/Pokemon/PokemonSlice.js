@@ -15,8 +15,8 @@ const pokemonSlice = createSlice({
   initialState: initialState,
   reducers: {
     getAll: state => ({...state}),
-    getAllFavorites: state => ({...state}),
-    addFavourite: state => ({...state}),
+    getAllTeam: state => ({...state}),
+    addPokemon: state => ({...state}),
     removeFavourite: state => ({...state}),
 
     setState(state, {payload: {key, newState}}) {

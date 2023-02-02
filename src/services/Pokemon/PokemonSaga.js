@@ -1,7 +1,7 @@
 import {all, put, takeLatest} from 'redux-saga/effects';
 
 import api from '../../common/api/api';
-import * as favoritesStorage from '../../common/storage/favorites';
+import * as TeamStorage from '../../common/storage/team';
 import {modalActions} from '../Modal/ModalSlice';
 import {PokemonActions} from './PokemonSlice';
 
@@ -19,12 +19,10 @@ function* getAll({payload}) {
   yield put(PokemonActions.setLoading({key: 'getAll', newState: false}));
 }
 
-function* getAllFavorites() {
-  yield put(
-    PokemonActions.setLoading({key: 'getAllFavorites', newState: true}),
-  );
+function* getAllTeam() {
+  yield put(PokemonActions.setLoading({key: 'getAllTeam', newState: true}));
 
-  const data = yield favoritesStorage.get();
+  const data = yield TeamStorage.get();
   yield put(
     PokemonActions.setState({
       key: 'allFavorites',
@@ -32,23 +30,28 @@ function* getAllFavorites() {
     }),
   );
 
-  yield put(
-    PokemonActions.setLoading({key: 'getAllFavorites', newState: false}),
-  );
+  yield put(PokemonActions.setLoading({key: 'getAllTeam', newState: false}));
 }
 
-function* addFavourite({payload}) {
-  yield put(PokemonActions.setLoading({key: 'addFavourite', newState: true}));
-  yield favoritesStorage.add(payload);
-  yield put(PokemonActions.getAllFavorites());
-  yield put(PokemonActions.setLoading({key: 'addFavourite', newState: false}));
+function* addPokemon({payload}) {
+  yield put(PokemonActions.setLoading({key: 'addPokemon', newState: true}));
+
+  //validations
+  const evolvesSpecies = payload.detail.species.evolves_from_species;
+  console.log(evolvesSpecies);
+
+  //validations
+
+  yield TeamStorage.add(payload.values);
+  yield put(PokemonActions.getAllTeam());
+  yield put(PokemonActions.setLoading({key: 'addPokemon', newState: false}));
 
   yield put(
     modalActions.setModal({
       keyModal: 'alertMessage',
       visible: true,
       params: {
-        title: 'Has been added to favorite!',
+        title: 'Added a new Pokemon to your team!',
         typeModal: 'success',
       },
     }),
@@ -59,8 +62,8 @@ function* removeFavourite({payload}) {
   yield put(
     PokemonActions.setLoading({key: 'removeFavourite', newState: true}),
   );
-  yield favoritesStorage.removeOne(payload.name, 'name');
-  yield put(PokemonActions.getAllFavorites());
+  yield TeamStorage.removeOne(payload.name, 'name');
+  yield put(PokemonActions.getAllTeam());
   yield put(
     PokemonActions.setLoading({key: 'removeFavourite', newState: false}),
   );
@@ -79,8 +82,8 @@ function* removeFavourite({payload}) {
 
 function* ActionWatcher() {
   yield takeLatest(PokemonActions.getAll, getAll);
-  yield takeLatest(PokemonActions.getAllFavorites, getAllFavorites);
-  yield takeLatest(PokemonActions.addFavourite, addFavourite);
+  yield takeLatest(PokemonActions.getAllTeam, getAllTeam);
+  yield takeLatest(PokemonActions.addPokemon, addPokemon);
   yield takeLatest(PokemonActions.removeFavourite, removeFavourite);
 }
 

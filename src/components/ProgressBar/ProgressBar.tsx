@@ -1,6 +1,6 @@
 /* eslint-disable curly */
 import React, {useEffect, useState} from 'react';
-import {Animated, Dimensions, View} from 'react-native';
+import {Animated, Dimensions, Text, View} from 'react-native';
 import {colors} from '../../style/Colors';
 
 import {style} from './ProgressBarStyle';

@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const key = '@afavorites';
+const key = '@team';
 
 export const remove = async () => {
   return await AsyncStorage.removeItem(key);

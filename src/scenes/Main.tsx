@@ -21,7 +21,7 @@ export const Main = () => {
         offset: 0,
       }),
     );
-    dispath(PokemonActions.getAllFavorites());
+    dispath(PokemonActions.getAllTeam());
   }, [dispath]);
 
   return (

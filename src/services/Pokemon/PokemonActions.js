@@ -4,8 +4,8 @@ export const asyncActions = createAction({
   pokemon: [
     'getAll',
     'setState',
-    'addFavourite',
+    'addPokemon',
     'removeFavourite',
-    'getAllFavorites',
+    'getAllTeam',
   ],
 });

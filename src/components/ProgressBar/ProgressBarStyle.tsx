@@ -4,6 +4,7 @@ import {colors} from '../../style/Index';
 
 export const style = StyleSheet.create({
   animatedView: {
+    maxWidth: '100%',
     backgroundColor: colors.blue50,
     height: 4,
     borderRadius: 5,
