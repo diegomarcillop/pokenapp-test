@@ -8,7 +8,7 @@ interface Props {
   onPressLeft: any;
   iconRight?: string;
   onPressRight?: any;
-  title: string;
+  title?: string;
 }
 
 const icons: any = {

@@ -4,7 +4,6 @@ import {colors, fonts} from '../../style/Index';
 export const style = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10,
     paddingTop: 50,
     minHeight: '100%',
     backgroundColor: colors.gray50,
@@ -21,6 +20,9 @@ export const style = StyleSheet.create({
     color: colors.black,
   },
   content: {
+    paddingHorizontal: 10,
+  },
+  list: {
     paddingTop: 20,
   },
   icon: {

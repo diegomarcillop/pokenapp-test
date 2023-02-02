@@ -1,10 +1,8 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
 import {SvgUri} from 'react-native-svg';
 
-import api from '../../../common/api/api';
-import {getColorType} from '../../../common/utils/get-type-color';
+import useFetchPokemon from '../../../hooks/useFetchPokemon';
 import {TypesList} from '../../List/TypesList/TypesList';
 import {style} from './PokemonCardStyle';
 
@@ -13,61 +11,30 @@ interface Props {
   onPress: any;
 }
 
-interface Character {
-  id: number;
-  image: string;
-  name: string;
-  types: any;
-  typePrimary: any;
-  background?: string;
-  details: any;
-  url?: string;
-}
-
 export const PokemonCard = ({url, onPress}: Props) => {
-  const [characterInformation, setCharacterInformation] = useState<Character>();
-
-  useEffect(() => {
-    getPokemonForId();
-  }, []);
-
-  const getPokemonForId = async () => {
-    const response = await api.get('', undefined, url);
-    const data: any = response.payload;
-    const types: any = Object.values(data.types);
-
-    setCharacterInformation({
-      id: data.id,
-      name: data.name,
-      types,
-      image: data?.sprites?.other?.dream_world?.front_default,
-      typePrimary: types[0].type.name,
-      details: data,
-      background: getColorType(types[0].type.name),
-      url,
-    });
-  };
+  const {data} = useFetchPokemon(url);
 
   const getStyle = () => ({
     ...style.container,
-    backgroundColor: characterInformation?.background,
+    backgroundColor: data?.background,
   });
 
   return (
-    <TouchableOpacity
-      onPress={() => onPress(characterInformation)}
-      style={getStyle()}>
-      {characterInformation?.image && (
+    <TouchableOpacity onPress={() => onPress(data)} style={getStyle()}>
+      {data?.image && (
         <SvgUri
           width={100}
           height={100}
-          uri={characterInformation?.image}
+          uri={data?.image}
           style={style.image}
         />
       )}
       <View style={style.content}>
-        <Text style={style.title}>{characterInformation?.name}</Text>
-        <TypesList types={characterInformation?.types || []} />
+        <Text style={style.title}>{data?.name}</Text>
+        <TypesList types={data?.types || []} />
+      </View>
+      <View>
+        <Text style={style.generation}>{data?.species.generation.name}</Text>
       </View>
     </TouchableOpacity>
   );

@@ -3,7 +3,7 @@ import {fonts} from '../../../style/Index';
 
 export const style = StyleSheet.create({
   containerType: {
-    maxWidth: '45%',
+    maxWidth: '50%',
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'white',

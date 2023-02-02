@@ -16,7 +16,7 @@ export const Main = () => {
   useEffect(() => {
     dispath(
       PokemonActions.getAll({
-        limit: 2,
+        limit: 200,
         offset: 0,
       }),
     );

@@ -73,6 +73,12 @@ export const CharacteristicsPokemon = () => {
               )}
             </Text>
           </View>
+          <View style={style.item}>
+            <Text style={style.label}>Generation</Text>
+            <Text style={style.value__capitalize}>
+              {detail?.species.generation.name}
+            </Text>
+          </View>
         </View>
       )}
       {tabSelected === 1 && (

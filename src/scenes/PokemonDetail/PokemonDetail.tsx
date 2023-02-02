@@ -4,11 +4,11 @@ import {Text, View} from 'react-native';
 import {SvgUri} from 'react-native-svg';
 import {useDispatch, useSelector} from 'react-redux';
 
+import * as favoritesStorage from '../../common/storage/favorites';
+import {CharacteristicsPokemon} from '../../components/CharacteristicsPokemon/CharacteristicsPokemon';
 import {Header} from '../../components/Header/Header';
 import {TypesList} from '../../components/List/TypesList/TypesList';
 import {PokemonActions} from '../../services/Pokemon/PokemonSlice';
-import * as favoritesStorage from '../../common/storage/favorites';
-import {CharacteristicsPokemon} from '../../components/CharacteristicsPokemon/CharacteristicsPokemon';
 import {style} from './PokemonDetailStyle';
 
 interface Props {

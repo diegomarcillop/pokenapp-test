@@ -48,4 +48,11 @@ export const style = StyleSheet.create({
   types: {
     flexDirection: 'row',
   },
+  generation: {
+    fontFamily: fonts.poppinsRegular,
+    fontSize: 12,
+    color: 'white',
+    textTransform: 'capitalize',
+    paddingTop: 5,
+  },
 });
