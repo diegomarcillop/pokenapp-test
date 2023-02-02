@@ -6,6 +6,7 @@ export const style = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
+    alignItems: 'flex-start',
   },
   card: {
     width: '100%',

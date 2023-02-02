@@ -4,6 +4,7 @@ import React, {useEffect} from 'react';
 import {useDispatch} from 'react-redux';
 
 import {PokemonActions} from '../services/Pokemon/PokemonSlice';
+import {Favorites} from './Favorites/Favorites';
 import {Home} from './Home/Home';
 import {PokemonDetail} from './PokemonDetail/PokemonDetail';
 
@@ -15,10 +16,11 @@ export const Main = () => {
   useEffect(() => {
     dispath(
       PokemonActions.getAll({
-        limit: 20,
+        limit: 2,
         offset: 0,
       }),
     );
+    dispath(PokemonActions.getAllFavorites());
   }, [dispath]);
 
   return (
@@ -32,6 +34,11 @@ export const Main = () => {
         <Stack.Screen
           name="Detail"
           component={PokemonDetail}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Favorites"
+          component={Favorites}
           options={{headerShown: false}}
         />
       </Stack.Navigator>

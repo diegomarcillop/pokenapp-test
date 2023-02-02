@@ -1,15 +1,18 @@
 import {StyleSheet} from 'react-native';
-import {fonts} from '../../style/Index';
+import {colors, fonts} from '../../style/Index';
 
 export const style = StyleSheet.create({
   container: {
+    height: 40,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
     paddingHorizontal: 10,
   },
   title: {
-    fontFamily: fonts.poppinsBold,
-    fontSize: 22,
+    fontFamily: fonts.poppinsExtraBold,
+    fontSize: 16,
+    color: colors.black,
   },
   icon: {
     width: 30,

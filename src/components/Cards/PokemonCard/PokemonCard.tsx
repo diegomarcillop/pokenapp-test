@@ -23,6 +23,7 @@ interface Character {
   typePrimary: any;
   background: string;
   details: any;
+  url?: string;
 }
 
 export const PokemonCard = ({url, onPress}: Props) => {
@@ -44,6 +45,7 @@ export const PokemonCard = ({url, onPress}: Props) => {
       typePrimary: characterInformation?.types[0].type.name,
       background: getColorType(characterInformation?.types[0].type.name),
       details: data,
+      url,
     });
   };
 
