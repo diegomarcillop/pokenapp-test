@@ -1,6 +1,7 @@
 import {StyleSheet} from 'react-native';
-import {colors} from '../../style/Colors';
-import {fonts} from '../../style/Fonts';
+
+import normalize from '../../common/utils/normalize';
+import {colors, fonts} from '../../style/Index';
 
 export const style = StyleSheet.create({
   container: {
@@ -10,17 +11,17 @@ export const style = StyleSheet.create({
   },
   title: {
     fontFamily: fonts.poppinsRegular,
-    fontSize: 14,
+    fontSize: normalize(14),
     color: colors.black,
   },
   titleDisabled: {
     fontFamily: fonts.poppinsRegular,
-    fontSize: 14,
+    fontSize: normalize(14),
     color: colors.gray200,
   },
   item: {
-    height: 40,
-    borderBottomWidth: 2,
+    height: normalize(40),
+    borderBottomWidth: normalize(2),
     borderBottomColor: colors.gray200,
     alignItems: 'center',
   },

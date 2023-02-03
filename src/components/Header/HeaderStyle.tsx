@@ -1,22 +1,24 @@
 import {StyleSheet} from 'react-native';
+
+import normalize from '../../common/utils/normalize';
 import {colors, fonts} from '../../style/Index';
 
 export const style = StyleSheet.create({
   container: {
-    height: 40,
+    height: normalize(40),
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: 10,
+    paddingHorizontal: normalize(10),
   },
   title: {
     fontFamily: fonts.poppinsExtraBold,
-    fontSize: 16,
+    fontSize: normalize(16),
     color: colors.black,
   },
   icon: {
-    width: 30,
-    height: 20,
+    width: normalize(30),
+    height: normalize(20),
     resizeMode: 'contain',
   },
 });

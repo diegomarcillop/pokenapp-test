@@ -60,7 +60,7 @@ export const CharacteristicsPokemon = () => {
               {detail?.details?.weight / 10} kg)
             </Text>
           </View>
-          <View style={style.item}>
+          <View style={style.item__spacing}>
             <Text style={style.label}>Abilities</Text>
             <Text style={style.value__capitalize}>
               {detail?.details?.abilities.map(

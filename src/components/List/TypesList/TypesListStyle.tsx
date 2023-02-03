@@ -1,4 +1,6 @@
 import {StyleSheet} from 'react-native';
+
+import normalize from '../../../common/utils/normalize';
 import {fonts} from '../../../style/Index';
 
 export const style = StyleSheet.create({
@@ -7,11 +9,11 @@ export const style = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'white',
-    borderRadius: 20,
-    paddingHorizontal: 10,
-    paddingVertical: 2,
-    marginVertical: 2,
-    marginRight: 4,
+    borderRadius: normalize(20),
+    paddingHorizontal: normalize(10),
+    paddingVertical: normalize(2),
+    marginVertical: normalize(2),
+    marginRight: normalize(4),
     opacity: 0.6,
   },
   textType: {

@@ -1,22 +1,23 @@
 import {StyleSheet} from 'react-native';
 
+import normalize from '../../common/utils/normalize';
 import {colors} from '../../style/Index';
 
 export const style = StyleSheet.create({
   animatedView: {
     maxWidth: '100%',
     backgroundColor: colors.blue50,
-    height: 4,
-    borderRadius: 5,
-    bottom: 4,
+    height: normalize(4),
+    borderRadius: normalize(5),
+    bottom: normalize(4),
   },
   progressBar: {
-    borderRadius: 5,
+    borderRadius: normalize(5),
   },
   progressBar_container: {
     width: '100%',
-    height: 4,
-    borderRadius: 5,
+    height: normalize(4),
+    borderRadius: normalize(5),
     backgroundColor: colors.gray50,
   },
 });

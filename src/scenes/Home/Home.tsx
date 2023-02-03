@@ -5,7 +5,6 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import {useSelector} from 'react-redux';
 
 import {InputSearch} from '../../components/InputSearch/InputSearch';
-
 import {PokemonList} from '../../components/List/PokemonList/PokemonList';
 import {colors} from '../../style/Index';
 import {GenericStyle} from '../../style/GenericStyle';
