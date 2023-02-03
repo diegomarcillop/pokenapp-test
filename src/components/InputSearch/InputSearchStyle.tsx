@@ -29,5 +29,6 @@ export const style = StyleSheet.create({
     fontFamily: fonts.poppinsRegular,
     fontSize: normalize(16),
     padding: normalize(5),
+    color: colors.black,
   },
 });

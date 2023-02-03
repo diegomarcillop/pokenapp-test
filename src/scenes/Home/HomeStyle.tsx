@@ -20,6 +20,7 @@ export const style = StyleSheet.create({
   title: {
     fontFamily: fonts.poppinsExtraBold,
     fontSize: normalize(30),
+    color: colors.black,
   },
   subtitle: {
     fontFamily: fonts.poppinsRegular,

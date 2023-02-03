@@ -14,7 +14,7 @@ export const style = StyleSheet.create({
   },
   item: {
     width: '100%',
-    height: normalize(35),
+    minHeight: normalize(35),
     flexDirection: 'row',
     alignItems: 'center',
     flexWrap: 'wrap',

@@ -34,7 +34,9 @@ export const Favorites = ({navigation}: Props) => {
           <View style={style.resume}>
             <Text style={style.title}>Summary</Text>
             <View>
-              <StatsProgress stats={resume.stats} />
+              {resume?.stats?.length > 0 && (
+                <StatsProgress stats={resume.stats} />
+              )}
             </View>
             <Text>
               Regions:{' '}
