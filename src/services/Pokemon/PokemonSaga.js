@@ -80,10 +80,10 @@ function* addPokemon({payload}) {
     e =>
       e.types.filter(type =>
         types.find(item => item.type.name === type.type.name),
-      ).length > 0,
+      )?.length > 0,
   );
 
-  if (allTeam.length < TOTAL_POKEMONS) {
+  if (allTeam?.length < TOTAL_POKEMONS) {
     //validations
     if (!isExistsEvolution && !isExistsType && newPoints >= 0) {
       yield TeamStorage.add({
@@ -172,7 +172,7 @@ function* calculeResume() {
   });
 
   resume.map(item => {
-    item.base_stat = Math.round(item.base_stat / allTeam.length);
+    item.base_stat = Math.round(item.base_stat / allTeam?.length);
   });
 
   yield put(

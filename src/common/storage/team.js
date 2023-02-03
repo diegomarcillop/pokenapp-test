@@ -28,7 +28,7 @@ export const add = async item => {
 export const get = async () => {
   let data = await AsyncStorage.getItem(key);
   data = JSON.parse(data);
-  return data;
+  return data || [];
 };
 
 export const getOne = async (value, keyValue) => {

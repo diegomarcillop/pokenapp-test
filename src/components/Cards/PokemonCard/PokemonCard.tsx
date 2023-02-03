@@ -20,7 +20,10 @@ export const PokemonCard = ({url, onPress}: Props) => {
   });
 
   return (
-    <TouchableOpacity onPress={() => onPress(data)} style={getStyle()}>
+    <TouchableOpacity
+      onPress={() => onPress(data)}
+      style={getStyle()}
+      disabled={loading}>
       {data?.image && (
         <SvgUri
           width={100}

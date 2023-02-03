@@ -25,6 +25,7 @@ export const style = StyleSheet.create({
     opacity: 0.5,
   },
   input: {
+    width: '80%',
     fontFamily: fonts.poppinsRegular,
     fontSize: normalize(16),
     padding: normalize(5),

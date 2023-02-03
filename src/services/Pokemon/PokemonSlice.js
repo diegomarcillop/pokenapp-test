@@ -8,7 +8,7 @@ const initialState = {
   },
   points: DEFAULT_POINTS,
   detail: {},
-  all: undefined,
+  all: [],
   allTeam: [],
 };
 

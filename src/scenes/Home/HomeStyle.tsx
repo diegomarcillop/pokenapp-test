@@ -7,7 +7,7 @@ export const style = StyleSheet.create({
   container: {
     flex: 1,
     padding: normalize(10),
-    paddingTop: normalize(50),
+    paddingTop: normalize(30),
     minHeight: '100%',
     backgroundColor: colors.gray50,
   },

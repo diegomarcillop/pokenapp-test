@@ -6,7 +6,7 @@ import {colors, fonts} from '../../style/Index';
 export const style = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: normalize(50),
+    paddingTop: normalize(30),
     minHeight: '100%',
     backgroundColor: colors.gray50,
   },
