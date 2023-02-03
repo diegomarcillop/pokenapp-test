@@ -34,7 +34,8 @@ export const style = StyleSheet.create({
   },
   content: {
     flex: 2,
-    borderRadius: normalize(50),
+    borderTopLeftRadius: normalize(50),
+    borderTopEndRadius: normalize(50),
     backgroundColor: colors.white,
     elevation: 2,
   },
