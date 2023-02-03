@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, {useEffect, useState} from 'react';
+import {useFocusEffect} from '@react-navigation/native';
+import React, {useState} from 'react';
 import {Text, View} from 'react-native';
 import {SvgUri} from 'react-native-svg';
 import {useDispatch, useSelector} from 'react-redux';
@@ -22,16 +23,18 @@ export const PokemonDetail = ({navigation}: Props) => {
 
   const [isFavourite, setIsFavourite] = useState(false);
 
-  useEffect(() => {
-    handleIsTeam();
-    () =>
-      dispatch(
-        PokemonActions.setState({
-          key: 'detail',
-          newState: undefined,
-        }),
-      );
-  }, [dispatch, allTeam]);
+  useFocusEffect(
+    React.useCallback(() => {
+      handleIsTeam();
+      () =>
+        dispatch(
+          PokemonActions.setState({
+            key: 'detail',
+            newState: undefined,
+          }),
+        );
+    }, [dispatch, allTeam]),
+  );
 
   const handleFavouritePokemon = () => {
     const values = {
