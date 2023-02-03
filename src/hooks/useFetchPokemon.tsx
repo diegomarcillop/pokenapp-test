@@ -15,6 +15,7 @@ interface Character {
   url?: string;
   species: any;
   totalStats: number;
+  generation: any;
 }
 
 const useFetchPokemon = (url: any) => {
@@ -31,6 +32,7 @@ const useFetchPokemon = (url: any) => {
     const values = response.payload;
     const types: any = Object.values(values.types);
     const species = await getSpeciesForId(values.id);
+    const generation = await getGeneration(species.generation.url);
 
     setData({
       id: values.id,
@@ -43,12 +45,18 @@ const useFetchPokemon = (url: any) => {
       totalStats: getTotalStats(values?.stats),
       species,
       url,
+      generation,
     });
     setLoading(false);
   };
 
   const getSpeciesForId = async (id: number) => {
     const response: any = await api.get(`/pokemon-species/${id}`);
+    return response.payload;
+  };
+
+  const getGeneration = async (newUrl: string) => {
+    const response: any = await await api.get('', undefined, newUrl);
     return response.payload;
   };
 

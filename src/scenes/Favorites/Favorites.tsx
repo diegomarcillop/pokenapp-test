@@ -1,10 +1,11 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {ScrollView, Text, View} from 'react-native';
 import {useSelector} from 'react-redux';
 
 import {Header} from '../../components/Header/Header';
-import {InputSearch} from '../../components/InputSearch/InputSearch';
 import {PokemonList} from '../../components/List/PokemonList/PokemonList';
+import {StatsProgress} from '../../components/StatsProgress/StatsProgress';
+import {GenericStyle} from '../../style/GenericStyle';
 import {style} from './FavoritesStyle';
 
 interface Props {
@@ -13,7 +14,7 @@ interface Props {
 }
 
 export const Favorites = ({navigation}: Props) => {
-  const {allFavorites} = useSelector((state: any) => state.pokemon);
+  const {allTeam, points, resume} = useSelector((state: any) => state.pokemon);
 
   return (
     <View style={style.container}>
@@ -22,17 +23,36 @@ export const Favorites = ({navigation}: Props) => {
         onPressLeft={() => navigation.goBack()}
         title="Your Pokemos"
       />
-      <View style={style.content}>
-        <InputSearch placeholder="Search your pokemon" />
+      <View style={style.sectionTop}>
+        <Text style={GenericStyle.subtitle}>
+          Puntos disponibles:{' '}
+          <Text style={GenericStyle.subtitle__success}>{points}pts</Text>
+        </Text>
+      </View>
+      <ScrollView style={style.content} nestedScrollEnabled={true}>
+        {allTeam.length > 0 && (
+          <View style={style.resume}>
+            <Text style={style.title}>Summary</Text>
+            <View>
+              <StatsProgress stats={resume.stats} />
+            </View>
+            <Text>
+              Regions:{' '}
+              <Text style={style.label}>
+                {resume.regions.toString().replace(',', '/')}
+              </Text>
+            </Text>
+          </View>
+        )}
         <View style={style.list}>
-          {allFavorites.length === 0 && (
+          {allTeam.length === 0 && (
             <View style={style.feedback}>
               <Text style={style.text}>You have no added Pokemons {':('} </Text>
             </View>
           )}
-          <PokemonList items={allFavorites} />
+          <PokemonList items={allTeam} />
         </View>
-      </View>
+      </ScrollView>
     </View>
   );
 };

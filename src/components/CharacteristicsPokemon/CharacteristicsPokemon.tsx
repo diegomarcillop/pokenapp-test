@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import {View, Text} from 'react-native';
+import {Text, View} from 'react-native';
 import {useSelector} from 'react-redux';
-import {ProgressBar} from '../ProgressBar/ProgressBar';
+import {StatsProgress} from '../StatsProgress/StatsProgress';
 
 import {Tabs} from '../Tabs/Tabs';
 import {style} from './CharacteristicsPokemonStyle';
@@ -42,6 +42,12 @@ export const CharacteristicsPokemon = () => {
             </Text>
           </View>
           <View style={style.item}>
+            <Text style={style.label}>Region</Text>
+            <Text style={style.value__capitalize}>
+              {detail?.generation.main_region.name}
+            </Text>
+          </View>
+          <View style={style.item}>
             <Text style={style.label}>Height</Text>
             <Text style={style.value}>
               {detail?.details?.height / 10}cm ({detail?.details?.height}ml)
@@ -75,16 +81,7 @@ export const CharacteristicsPokemon = () => {
       )}
       {tabSelected === 1 && (
         <View style={style.content}>
-          {detail?.details.stats.map((item: any) => (
-            <View style={style.item__row} key={item.stat.name}>
-              <Text style={style.value__capitalize}>
-                {item.stat.name} ({item.base_stat})
-              </Text>
-              <View style={style.progress}>
-                <ProgressBar currentStep={item.base_stat} totalSteps={100} />
-              </View>
-            </View>
-          ))}
+          <StatsProgress stats={detail?.details.stats} />
           <View style={{...style.item, justifyContent: 'space-between'}}>
             <Text style={style.label}>Total</Text>
             <Text style={style.value__capitalize__large}>

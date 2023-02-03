@@ -19,6 +19,17 @@ export const style = StyleSheet.create({
     fontFamily: fonts.poppinsExtraBold,
     fontSize: 30,
   },
+  subtitle: {
+    fontFamily: fonts.poppinsRegular,
+    fontSize: 16,
+    color: colors.black,
+  },
+  subtitle__success: {
+    fontFamily: fonts.poppinsExtraBold,
+    fontSize: 16,
+    color: colors.green400,
+    textDecorationLine: 'underline',
+  },
   content: {
     paddingTop: 20,
   },

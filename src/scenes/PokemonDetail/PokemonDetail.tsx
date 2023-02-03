@@ -4,7 +4,7 @@ import {Text, View} from 'react-native';
 import {SvgUri} from 'react-native-svg';
 import {useDispatch, useSelector} from 'react-redux';
 
-import * as favoritesStorage from '../../common/storage/team';
+import * as teamStorage from '../../common/storage/team';
 import {CharacteristicsPokemon} from '../../components/CharacteristicsPokemon/CharacteristicsPokemon';
 import {Header} from '../../components/Header/Header';
 import {TypesList} from '../../components/List/TypesList/TypesList';
@@ -18,12 +18,12 @@ interface Props {
 
 export const PokemonDetail = ({navigation}: Props) => {
   const dispatch = useDispatch();
-  const {detail} = useSelector((state: any) => state.pokemon);
+  const {detail, allTeam} = useSelector((state: any) => state.pokemon);
 
   const [isFavourite, setIsFavourite] = useState(false);
 
   useEffect(() => {
-    handleIsFavourite();
+    handleIsTeam();
     () =>
       dispatch(
         PokemonActions.setState({
@@ -31,7 +31,7 @@ export const PokemonDetail = ({navigation}: Props) => {
           newState: undefined,
         }),
       );
-  }, [dispatch]);
+  }, [dispatch, allTeam]);
 
   const handleFavouritePokemon = () => {
     const values = {
@@ -40,16 +40,15 @@ export const PokemonDetail = ({navigation}: Props) => {
     };
 
     if (isFavourite) {
-      dispatch(PokemonActions.removeFavourite(values));
+      dispatch(PokemonActions.removePokemon(values));
       navigation.goBack();
     } else {
       dispatch(PokemonActions.addPokemon({values, detail}));
     }
-    setIsFavourite(!isFavourite);
   };
 
-  const handleIsFavourite = async () => {
-    const isExists = await favoritesStorage.getOne(detail.name, 'name');
+  const handleIsTeam = async () => {
+    const isExists = await teamStorage.getOne(detail.name, 'name');
     setIsFavourite(isExists !== undefined);
   };
 

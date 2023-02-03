@@ -8,6 +8,9 @@ export const style = StyleSheet.create({
     minHeight: '100%',
     backgroundColor: colors.gray50,
   },
+  sectionTop: {
+    padding: 10,
+  },
   containerTitle: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -16,8 +19,17 @@ export const style = StyleSheet.create({
   },
   title: {
     fontFamily: fonts.poppinsExtraBold,
-    fontSize: 30,
+    fontSize: 20,
     color: colors.black,
+    textAlign: 'center',
+  },
+  resume: {
+    borderWidth: 1,
+    borderColor: colors.gray200,
+    paddingHorizontal: 10,
+    marginVertical: 10,
+    borderRadius: 10,
+    paddingVertical: 10,
   },
   content: {
     paddingHorizontal: 10,
@@ -37,5 +49,11 @@ export const style = StyleSheet.create({
     fontFamily: fonts.poppinsRegular,
     fontSize: 14,
     color: colors.black,
+  },
+  label: {
+    fontFamily: fonts.poppinsRegular,
+    fontSize: 14,
+    color: colors.black,
+    textTransform: 'capitalize',
   },
 });

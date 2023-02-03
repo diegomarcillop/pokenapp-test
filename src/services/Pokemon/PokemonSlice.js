@@ -5,9 +5,11 @@ const initialState = {
   loading: {
     getAll: false,
   },
+  points: 3000,
+  defaultPoints: 3000,
   detail: {},
   all: undefined,
-  allFavorites: [],
+  allTeam: [],
 };
 
 const pokemonSlice = createSlice({
@@ -17,7 +19,7 @@ const pokemonSlice = createSlice({
     getAll: state => ({...state}),
     getAllTeam: state => ({...state}),
     addPokemon: state => ({...state}),
-    removeFavourite: state => ({...state}),
+    removePokemon: state => ({...state}),
 
     setState(state, {payload: {key, newState}}) {
       state[key] = newState;

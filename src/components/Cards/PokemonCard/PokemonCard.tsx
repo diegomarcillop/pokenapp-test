@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
+import {ActivityIndicator, Text, TouchableOpacity, View} from 'react-native';
 import {SvgUri} from 'react-native-svg';
 
 import useFetchPokemon from '../../../hooks/useFetchPokemon';
@@ -12,7 +12,7 @@ interface Props {
 }
 
 export const PokemonCard = ({url, onPress}: Props) => {
-  const {data} = useFetchPokemon(url);
+  const {data, loading} = useFetchPokemon(url);
 
   const getStyle = () => ({
     ...style.container,
@@ -30,7 +30,9 @@ export const PokemonCard = ({url, onPress}: Props) => {
         />
       )}
       <View style={style.content}>
-        <Text style={style.title}>{data?.name}</Text>
+        <Text style={style.title}>
+          {data?.name} {loading && <ActivityIndicator size={30} />}
+        </Text>
         <TypesList types={data?.types || []} />
       </View>
       <View>

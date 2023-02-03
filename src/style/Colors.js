@@ -8,4 +8,5 @@ export const colors = {
   red: '#FF415E',
   success: '#5ED871',
   blue600: '#3520FF',
+  green400: '#08A573',
 };
