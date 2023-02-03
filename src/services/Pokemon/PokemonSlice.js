@@ -1,12 +1,12 @@
 import {createSlice} from '@reduxjs/toolkit';
+import {DEFAULT_POINTS} from '../../common/constants/constants';
 import {asyncActions} from './PokemonActions';
 
 const initialState = {
   loading: {
     getAll: false,
   },
-  points: 3000,
-  defaultPoints: 3000,
+  points: DEFAULT_POINTS,
   detail: {},
   all: undefined,
   allTeam: [],

@@ -2,6 +2,7 @@
 import {all, put, select, takeLatest} from 'redux-saga/effects';
 
 import api from '../../common/api/api';
+import {DEFAULT_POINTS, TOTAL_POKEMONS} from '../../common/constants/constants';
 import * as TeamStorage from '../../common/storage/team';
 import {modalActions} from '../Modal/ModalSlice';
 import {PokemonActions} from './PokemonSlice';
@@ -12,6 +13,7 @@ const titles = {
   ready_evolution: 'You already have a species of the same evolution.',
   ready_type: 'Already have species of the same type in the team',
   max_points: 'You exceed the maximum points',
+  complete: 'Your team is complete',
 };
 
 const INITAL_STATS = [
@@ -81,26 +83,34 @@ function* addPokemon({payload}) {
       ).length > 0,
   );
 
-  //validations
-  if (!isExistsEvolution && !isExistsType && newPoints >= 0) {
-    yield TeamStorage.add({
-      ...payload.values,
-      evolution_chain: evolution,
-      totalStats: payload.detail.totalStats,
-      types,
-      stats: payload.detail?.details.stats,
-      region: payload.detail?.generation.main_region.name,
-    });
+  if (allTeam.length < TOTAL_POKEMONS) {
+    //validations
+    if (!isExistsEvolution && !isExistsType && newPoints >= 0) {
+      yield TeamStorage.add({
+        ...payload.values,
+        evolution_chain: evolution,
+        totalStats: payload.detail.totalStats,
+        types,
+        stats: payload.detail?.details.stats,
+        region: payload.detail?.generation.main_region.name,
+      });
 
-    yield put(PokemonActions.getAllTeam());
-    yield put(PokemonActions.setLoading({key: 'addPokemon', newState: false}));
+      yield put(PokemonActions.getAllTeam());
+      yield put(
+        PokemonActions.setLoading({key: 'addPokemon', newState: false}),
+      );
 
-    modal = {title: titles.add, type: 'success'};
+      modal = {title: titles.add, type: 'success'};
+    } else {
+      let title = isExistsEvolution
+        ? titles.ready_evolution
+        : titles.ready_type;
+      if (newPoints < 0) title = titles.max_points;
+
+      modal = {...modal, title};
+    }
   } else {
-    let title = isExistsEvolution ? titles.ready_evolution : titles.ready_type;
-    if (newPoints < 0) title = titles.max_points;
-
-    modal = {title};
+    modal = {...modal, title: titles.complete};
   }
 
   yield put(
@@ -135,14 +145,14 @@ function* removePokemon({payload}) {
 }
 
 function* calculePoints() {
-  const {allTeam, defaultPoints} = yield select(state => state.pokemon);
+  const {allTeam} = yield select(state => state.pokemon);
 
   let total = 0;
   allTeam?.forEach(e => {
     total = total + e.totalStats;
   });
 
-  total = defaultPoints - total;
+  total = DEFAULT_POINTS - total;
   yield put(PokemonActions.setState({key: 'points', newState: total}));
 }
 
